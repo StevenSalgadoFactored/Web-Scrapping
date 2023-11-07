@@ -23,7 +23,10 @@ for row in rows:
     name_element = cols[1].find('a', class_='ent-name')
     small_name_element = cols[1].find('small', class_='text-muted')
     
-    if small_name_element:
+    # Determine if it's a Mega Evolution
+    is_mega_evolution = bool(small_name_element)
+    
+    if is_mega_evolution:
         pokemon_name = small_name_element.text.strip()
     else:
         pokemon_name = name_element.text.strip()
@@ -50,6 +53,7 @@ for row in rows:
         'Sp. Def': individual_stats[4],
         'Speed': individual_stats[5],
         'Sprite URL': sprite_url,
+        'Is Mega Evolution': is_mega_evolution,
     }
     data_list.append(data)
 
